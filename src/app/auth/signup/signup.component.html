@@ -1,0 +1,87 @@
+<div class="wrapper ">
+
+    <router-outlet></router-outlet>
+    <div class="main-panel">
+        <app-header></app-header>
+        <!-- Content -->
+        <div class="content" >
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8 col-md-6 col-sm-6">
+                        <div class="card">
+                            <div class="card-header card-header-primary">
+                                <h4 class="card-title">Créer un compte</h4>
+                                <p class="card-category">Renseignez votre email et un mot passe!</p>
+                            </div>
+                            <div class="card-body">
+                                <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <label for="email" class="bmd-label-floating">Email</label>
+                                                <input formControlName="email" type="email" id="email" required name="email"
+                                                    class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                    <label for="password" class="bmd-label-floating">Mot de passe</label>
+                                                    <input formControlName="password" type="password" id="password" required name="password"
+                                                        class="form-control">
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <p class="text-danger">{{ errorMessage }}</p>
+                                        </div>
+                                    </div>
+                                    <button [disabled]="signUpForm.invalid" type="submit" id="signUpBtn"
+                                            class="btn btn-primary pull">Go</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Content -->
+    </div>
+
+
+    <!-- Footer 
+    <footer class="footer">
+        <div class="container-fluid">
+            <nav class="float-left">
+                <ul>
+                    <li>
+                        <a href="https://www.creative-tim.com">
+                            Creative Tim
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://creative-tim.com/presentation">
+                            About Us
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://blog.creative-tim.com">
+                            Blog
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.creative-tim.com/license">
+                            Licenses
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="copyright float-right">
+                &copy;
+                <script>
+                    document.write(new Date().getFullYear())
+                </script>, made with <i class="material-icons">favorite</i> by
+                <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+            </div>
+        </div>
+    </footer>
+     End Footer -->
+</div>
