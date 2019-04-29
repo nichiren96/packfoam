@@ -37,6 +37,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { EntriesService } from './services/entries.service';
 import { ExitsService } from './services/exits.service';
 import { ProgressbarComponent } from './progressbar/progressbar.component';
+import { ClientsService } from './services/clients.service';
 
 const appRoutes: Routes = [
   { path: 'auth/signup', component: SignupComponent },
@@ -54,6 +55,9 @@ const appRoutes: Routes = [
   { path: 'exits', canActivate: [AuthGuardService], component: ExitListComponent},
   { path: 'exits/new', canActivate: [AuthGuardService], component: ExitFormComponent},
   { path: 'exits/view/:id', canActivate: [AuthGuardService], component: SingleExitComponent},
+  { path: 'clients', canActivate: [AuthGuardService], component: ClientListComponent},
+  { path: 'clients/new', canActivate: [AuthGuardService], component: ClientFormComponent},
+  { path: 'clients/view/:id', canActivate: [AuthGuardService], component: SingleClientComponent},
   { path: '', redirectTo: 'auth/signin', pathMatch: 'full'},
   { path: '**', redirectTo: 'auth/signin'}
 ];
@@ -102,6 +106,7 @@ const appRoutes: Routes = [
     CompaniesService,
     OrdersService,
     ProductsService,
+    ClientsService,
     EntriesService,
     ExitsService,
     AuthGuardService

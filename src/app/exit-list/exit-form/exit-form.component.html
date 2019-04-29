@@ -34,7 +34,11 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <label for="product" class="bmd-label-floating">Article</label>
-                          <input type="text" formControlName="product" name="product" id="product">
+                          <select name="product" id="product" formControlName="product" class="form-control">
+                            <option *ngFor="let product of products" [value]="product.reference">
+                              {{ product.reference }}
+                            </option>
+                          </select>
                            
                         </div>
                       </div>
@@ -51,7 +55,11 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <label for="price" class="bmd-label-floating">Prix</label>
-                          <input formControlName="price" type="text" class="form-control" name="price" id="price" />
+                          <input formControlName="price" 
+                            value="{{ product.price }}"
+                            type="text" 
+                            class="form-control"
+                            name="price" id="price" />
                         </div>
                       </div>
                     </div>

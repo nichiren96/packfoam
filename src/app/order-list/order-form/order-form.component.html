@@ -1,115 +1,106 @@
 <div class="wrapper ">
-  <app-sidebar></app-sidebar>
-  <router-outlet></router-outlet>
-  <div class="main-panel">
-      <app-header></app-header>
-      <!-- Content -->
-      <div class="content" style="">
-          <div class="container-fluid">
+    <app-sidebar></app-sidebar>
+    <router-outlet></router-outlet>
+    <div class="main-panel">
+        <app-header></app-header>
+        <!-- Content -->
+        <div class="content" style="">
+            <div class="container-fluid">
 
-              <div class="row">
-                  <div class="col-lg-8 col-md-6 col-sm-6">
-                      <nav aria-label="breadcrumb" role="navigation">
-                          <ol class="breadcrumb">
-                              <li class="breadcrumb-item"><a routerLink="/orders" style="cursor: pointer"
-                                      href="">Commandes</a></li>
-                              <li class="breadcrumb-item active" aria-current="page">Créer une commande</li>
-                          </ol>
-                      </nav>
-                  </div>
-              </div>
+                <div class="row">
+                    <div class="col-lg-8 col-md-6 col-sm-6">
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a routerLink="/orders" style="cursor: pointer"
+                                        href="">Commandes</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Créer une commande</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
 
-              <div class="row">
-                  <div class="col-lg-8 col-md-6 col-sm-6">
-                      <div class="card">
+                <div class="row">
+                    <div class="col-lg-8 col-md-6 col-sm-6">
+                        <div class="card">
 
-                          <div class="card-header card-header-primary">
-                              <h4 class="card-title ">Créer une nouvelle commande</h4>
-                              <p class="card-category">Veuillez rensigner les détails sur cette commande</p>
-                              <button class="btn btn-success pull-right" (click)="onBack()">Retour</button>
-                          </div>
-                          <div class="card-body">
+                            <div class="card-header card-header-primary">
+                                <h4 class="card-title ">Créer une nouvelle commande</h4>
+                                <p class="card-category">Veuillez renseigner les détails sur cette commande</p>
+                                <button class="btn btn-success pull-right" (click)="onBack()">Retour</button>
+                            </div>
+                            <div class="card-body">
 
-                              <form [formGroup]="orderForm" (ngSubmit)="onSaveOrder()">
-                                  <div class="row">
-                                      <div class="col-md-4">
-                                          <div class="form-group">
-                                              <label for="client" class="bmd-label-floating">Client</label>
-                                              <select class="form-control" id="client" name="client">
-                                                <option>Rasolo Pakistan</option>
-                                                <option>John Doe</option>
-                                              </select>
-                                        
-                                          </div>
-                                      </div>
+                                <form [formGroup]="orderForm" (ngSubmit)="onSaveOrder()">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="client" class="bmd-label-floating">Client</label>
+                                                <select formControlName="client" class="form-control" id="client"
+                                                    name="client">
+                                                    <option *ngFor="let client of clients" [value]="client.name">
+                                                        {{ client.name }}
+                                                    </option>
+                                                </select>
 
-                                      <div class="col-md-4">
-                                          <div class="form-group">
-                                            <label for="article" class="bmd-label-floating">Article</label>
-                                            <select class="form-control" id="article" name="article">
-                                              <option>Mousse Simple</option>
-                                              <option>RIA</option>
-                                            </select>
-                                          </div>
-                                      </div>
-                                      <div class="col-md-2">
-                                        <div class="form-group">
-                                          <label for="quantity" class="bmd-label-floating">Quantité</label>
-                                          <select class="form-control" id="quantity" name="quantity">
-                                            <option value="1">1</option>
-                                            <option value="1">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                          </select>
+                                            </div>
                                         </div>
-                                    </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="product" class="bmd-label-floating">Article</label>
+                                                <select name="product" id="product" 
+                                                    formControlName="product"
+                                                    class="form-control">
+                                                    <option *ngFor="let product of products"
+                                                        [value]="product.reference">
+                                                        {{ product.reference }}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label for="quantity" class="bmd-label-floating">Quantité</label>
+                                                <input type="text" class="form-control"
+                                                     formControlName="quantity"
+                                                     id="quantity" name="quantity">
+            
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="row">
-                                      <div class="col-md-6">
-                                          <div class="form-group">
-                                              <label for="status" class="bmd-label-floating">Statut de la commande</label>
-                                              <select class="form-control" id="status" name="status">
-                                                <option value="true" selected>Validée</option>
-                                                <option value="false">En attende de validation</option>
-                                              </select>
-                                          </div>
-                                      </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="status" class="bmd-label-floating">Statut de la
+                                                    commande</label>
+                                                <select class="form-control" 
+                                                    formControlName="status"
+                                                    id="status" name="status">
+                                                    <option value="true" selected>Validée</option>
+                                                    <option value="false">En attende de validation</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
 
-                                      <div class="col-md-8">
-                                        <div class="form-group">
-                                           <input type="hidden" id="user"/>
-                                           <input type="hidden" id="user"/>
-                                        </div>
-                                    
+                            
+                            <div class="row">
+                                <button class="btn btn-primary" type="submit">Enregistrer</button>
+                            </div>
+                            </form>
 
-                                      
+                        </div>
+                    </div>
 
-                                  </div>
-                                  <div class="row">
-                                      <button class="btn btn-primary" 
-                                         
-                                          type="submit">Enregistrer</button>
-                                  </div>
-                              </form>
-
-                          </div>
-                      </div>
-
-                  </div>
-              </div>
-          </div>
-      </div>
-      <!-- End Content -->
-  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Content -->
+</div>
 
 
-  <!-- Footer 
+<!-- Footer 
       <footer class="footer">
           <div class="container-fluid">
               <nav class="float-left">

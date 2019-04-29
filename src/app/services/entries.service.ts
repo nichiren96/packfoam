@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Entry } from '../models/Entry.model';
-import { Product } from '../models/Product.model';
 import { Subject } from 'rxjs';
 import * as firebase from 'firebase';
 import { ProductsService } from './products.service';
@@ -49,14 +48,11 @@ export class EntriesService {
 
   createNewEntry(newEntry: Entry) {
 
-    console.log("NEW ENTRY =>  PRODUCT TO UPDATE: " + newEntry.product_reference + " QUANTITY TO ADD: " + newEntry.quantity);
-
-    this.updateProductQuantity(newEntry.product_reference, newEntry.quantity);
-
     this.entries.push(newEntry);
     this.saveEntries();
     this.emitEntries();
 
+    this.updateProductQuantity(newEntry.product_reference, newEntry.quantity);
 
   }
 
@@ -71,11 +67,11 @@ export class EntriesService {
     var ref = db.ref("entries");
     var aref = db.ref("products").orderByChild('reference').equalTo(product_reference);
 
-    aref.on('value', (data) => {
+    aref.once('value', (data) => {
 
       product = data.val();
 
-      console.log(product);
+      console.log("KEY "+ data.key);
 
       console.log(product.reference);
 
@@ -92,15 +88,15 @@ export class EntriesService {
 
       }
 
-      console.log("PRODUCT TO UPDATE CURRENT FROM DATABASE ===> " + product.reference);
-      console.log("PRODUCT TO UPDATE CURRENT QUANTITY FROM DATABASE => " + product.quantity);
+      console.log("PRODUCT TO UPDATE CURRENT FROM DATABASE ===> " + product[id].reference);
+      console.log("PRODUCT TO UPDATE CURRENT QUANTITY FROM DATABASE => " + product[id].quantity);
 
-      q = parseInt(product.quantity) + product_quantity;
+      q = parseInt(product[id].quantity) + product_quantity;
 
-      product.quantity = q;
+      product[id].quantity = q;
 
-      console.log("PRODUCT TO UPDATE CURRENT QUANTITY AFTER HOT CHANGE :)=> " + product.quantity);
-
+      console.log("PRODUCT TO UPDATE CURRENT QUANTITY AFTER HOT CHANGE :)=> " + product[id].quantity);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 
       firebase.database().ref("/products/"+id).update({ quantity: q });
 

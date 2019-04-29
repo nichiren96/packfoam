@@ -48,7 +48,61 @@ export class ExitsService {
     this.exits.push(newExit);
     this.saveExits();
     this.emitExits();
+
+    this.updateProductQuantity(newExit.product, newExit.quantity);
   }
+
+
+  updateProductQuantity(product_reference: string, product_quantity: number) {
+
+    let q;
+    let product;
+    let id;
+
+    // Get a database reference 
+    var db = firebase.database();
+    var ref = db.ref("exits");
+    var aref = db.ref("products").orderByChild('reference').equalTo(product_reference);
+
+    aref.once('value', (data) => {
+
+      product = data.val();
+
+      console.log("KEY "+ data.key);
+
+      console.log(product.reference);
+
+      switch (product_reference) {
+        case "HD10":
+          id = 0
+          break;
+        case "HD20":
+          id = 1
+          break;
+        case "HD30":
+          id = 2;
+          break;
+
+      }
+
+      console.log("PRODUCT TO UPDATE CURRENT FROM DATABASE ===> " + product[id].reference);
+      console.log("PRODUCT TO UPDATE CURRENT QUANTITY FROM DATABASE => " + product[id].quantity);
+
+      q = parseInt(product[id].quantity) - product_quantity;
+
+      product[id].quantity = q;
+
+      console.log("PRODUCT TO UPDATE CURRENT QUANTITY AFTER HOT CHANGE :)=> " + product[id].quantity);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+
+      firebase.database().ref("/products/"+id).update({ quantity: q });
+
+    });
+
+
+
+  }
+
 
   removeExit(exit: Exit) {
 

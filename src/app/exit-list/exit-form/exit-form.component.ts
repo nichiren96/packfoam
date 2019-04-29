@@ -3,7 +3,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ExitsService } from '../../services/exits.service';
 import { Router } from '@angular/router';
 import { Exit } from '../../models/Exit.model';
+import { Product } from '../../models/Product.model';
 import { AuthService } from '../../services/auth.service';
+import { ProductsService } from '../../services/products.service';
+import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-exit-form',
@@ -13,14 +17,28 @@ import { AuthService } from '../../services/auth.service';
 export class ExitFormComponent implements OnInit {
 
   exitForm: FormGroup;
+
+  product = 'Yes';
+
+  products: Product[];
+  productsSubscription: Subscription;
   
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
               private exitService: ExitsService,
+              private productService: ProductsService,
               private router: Router) { }
 
   ngOnInit() {
+    this.productsSubscription = this.productService.productsSubject.subscribe(
+      (products: Product[]) => {
+        this.products = products;
+      }
+    );
+    this.productService.getProducts();
+    this.productService.emitProducts();
     this.initForm();
+
   }
 
   initForm() {
