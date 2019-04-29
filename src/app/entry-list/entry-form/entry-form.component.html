@@ -1,0 +1,124 @@
+<div class="wrapper ">
+  <app-sidebar></app-sidebar>
+  <router-outlet></router-outlet>
+  <div class="main-panel">
+    <app-header></app-header>
+    <!-- Content -->
+    <div class="content" style="">
+      <div class="container-fluid">
+
+        <div class="row">
+          <div class="col-lg-8 col-md-6 col-sm-6">
+            <nav aria-label="breadcrumb" role="navigation">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/entries" style="cursor: pointer" href="">Stock</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Ajouter une entrée</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-8 col-md-6 col-sm-6">
+            <div class="card">
+
+              <div class="card-header card-header-primary">
+                <h4 class="card-title ">Ajouter une nouvelle entrée</h4>
+                <p class="card-category">Veuillez renseigner les détails sur cette entrée</p>
+                <button class="btn btn-success pull-right" (click)="onBack()">Retour</button>
+              </div>
+              <div class="card-body">
+
+                <form [formGroup]="entryForm" (ngSubmit)="onSaveEntry()">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="product" class="bmd-label-floating">Article</label>
+                        <input type="text" formControlName="product" name="product" id="product"/>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="quantity" class="bmd-label-floating">Quantité</label>
+                        <input formControlName="quantity" type="number" class="form-control" name="quantity"
+                          id="quantity" />
+                      </div>
+                    </div>
+
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="price" class="bmd-label-floating">Prix</label>
+                        <input formControlName="price" type="text" class="form-control" name="price" id="price" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-8">
+                      <div class="form-group">
+                        <label for="entry_date" class="bmd-label-floating">Date</label>
+                        <input formControlName="entry_date" type="date" name="entry_date" id="entry_date" />
+                      </div>
+                    </div>
+                  </div>
+
+
+                  
+                  <div class="row">
+                    <button class="btn btn-primary" 
+                    [disabled]="entryForm.invalid"
+                    type="submit">Enregistrer</button>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Content -->
+  </div>
+
+
+  <!-- Footer 
+      <footer class="footer">
+          <div class="container-fluid">
+              <nav class="float-left">
+                  <ul>
+                      <li>
+                          <a href="https://www.creative-tim.com">
+                              Creative Tim
+                          </a>
+                      </li>
+                      <li>
+                          <a href="https://creative-tim.com/presentation">
+                              About Us
+                          </a>
+                      </li>
+                      <li>
+                          <a href="http://blog.creative-tim.com">
+                              Blog
+                          </a>
+                      </li>
+                      <li>
+                          <a href="https://www.creative-tim.com/license">
+                              Licenses
+                          </a>
+                      </li>
+                  </ul>
+              </nav>
+              <div class="copyright float-right">
+                  &copy;
+                  <script>
+                      document.write(new Date().getFullYear())
+                  </script>, made with <i class="material-icons">favorite</i> by
+                  <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+              </div>
+          </div>
+      </footer>
+      End Footer -->
+</div>

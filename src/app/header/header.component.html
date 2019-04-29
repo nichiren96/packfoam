@@ -4,6 +4,15 @@
         <div class="navbar-wrapper">
             <a class="navbar-brand" href="#pablo">Bienvenue</a>
         </div>
+        <form class="navbar-form">
+                <div class="input-group no-border">
+                    <input type="text" value="" class="form-control" placeholder="Rechercher...">
+                    <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                        <i class="material-icons">mic</i>
+                        <div class="ripple-container"></div>
+                    </button>
+                </div>
+            </form>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
             aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -12,6 +21,7 @@
             <span class="navbar-toggler-icon icon-bar"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end">
+           
             <ul class="navbar-nav">
                 <li class="nav-item" routerLinkActive="active" *ngIf="!isAuth">
                     <a class="nav-link" routerLink="/auth/signin" style="cursor: pointer">
@@ -31,5 +41,9 @@
             </ul>
         </div>
     </div>
+
+<mat-progress-bar *ngIf="loading" color="accent" mode="query">
+</mat-progress-bar>
+
 </nav>
 <!-- End Navbar -->

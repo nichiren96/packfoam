@@ -1,11 +1,16 @@
 <div class="wrapper ">
-  
+
+
     <router-outlet></router-outlet>
     <div class="main-panel">
-        
-      
-     
+
+
+
     </div>
-    
+
+
+    <mat-progress-bar *ngIf="loading" color="accent" mode="indeterminate">
+    </mat-progress-bar>
+
 
 </div>

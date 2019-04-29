@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../models/Product.model';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 import * as firebase from 'firebase';
 
 @Injectable()
@@ -43,6 +43,7 @@ export class ProductsService {
     );
   }
 
+ 
   createNewProduct(newProduct: Product) {
     this.products.push(newProduct);
     this.saveProducts();

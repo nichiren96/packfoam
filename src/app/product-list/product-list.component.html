@@ -33,6 +33,9 @@
                         Référence
                       </th>
                       <th>
+                        Quantité
+                      </th>
+                      <th>
                         Designation
                       </th>
                       <th>
@@ -45,6 +48,7 @@
                     <tbody id="productList">
                       <tr *ngFor="let product of products; let i = index">
                         <td>{{ product.reference}}</td>
+                        <td>{{ product.quantity}}</td>
                         <td>{{ product.designation }}</td>
                         <td><span style="cursor: pointer;" (click)="onViewProduct(i)">Détails</span></td>
                         <td><span style="cursor: pointer;" class="text-danger"

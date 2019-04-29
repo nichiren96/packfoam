@@ -1,0 +1,100 @@
+<div class="wrapper ">
+  <app-sidebar></app-sidebar>
+  <router-outlet></router-outlet>
+  <div class="main-panel">
+    <app-header></app-header>
+    <!-- Content -->
+    <div class="content" style="">
+      <div class="container-fluid">
+
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="card card-stats">
+              <div class="card-header card-header-success card-header-icon">
+                <div class="card-icon">
+                  <a routerLink="/entries/new" style="cursor: pointer">
+                    <i class="material-icons text-white">add</i>
+                  </a>
+                </div>
+                <p class="card-category">Stock</p>
+                <h3 class="card-title">Entrée</h3>
+              </div>
+              <div class="card-footer">
+                <div class="stats">
+                  <i class="material-icons">date_range</i> <a routerLink="/entries">
+                    Liste des entrées
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="card card-stats">
+              <div class="card-header card-header-danger card-header-icon">
+                <div class="card-icon">
+                  <a routerLink="/exits/new" style="cursor: pointer">
+                  <i class="material-icons text-white">remove</i>
+                </a>
+                </div>
+                <p class="card-category">Stock</p>
+                <h3 class="card-title">Sortie</h3>
+              </div>
+              <div class="card-footer">
+                <div class="stats">
+                  <i class="material-icons">date_range</i> <a routerLink="/exits">
+                    Liste des sorties
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+        </div>
+
+
+      </div>
+    </div>
+    <!-- End Content -->
+  </div>
+
+
+  <!-- Footer 
+    <footer class="footer">
+        <div class="container-fluid">
+            <nav class="float-left">
+                <ul>
+                    <li>
+                        <a href="https://www.creative-tim.com">
+                            Creative Tim
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://creative-tim.com/presentation">
+                            About Us
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://blog.creative-tim.com">
+                            Blog
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.creative-tim.com/license">
+                            Licenses
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="copyright float-right">
+                &copy;
+                <script>
+                    document.write(new Date().getFullYear())
+                </script>, made with <i class="material-icons">favorite</i> by
+                <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+            </div>
+        </div>
+    </footer>
+    End Footer -->
+</div>

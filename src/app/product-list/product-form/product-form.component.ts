@@ -27,6 +27,7 @@ export class ProductFormComponent implements OnInit {
   initForm() {
     this.productForm = this.formBuilder.group({
       reference: ['', Validators.required],
+      quantity: ['', Validators.required],
       designation: ['', Validators.required],
       price: ['', Validators.required]
     });
@@ -34,10 +35,11 @@ export class ProductFormComponent implements OnInit {
 
   onSaveProduct() {
     const reference = this.productForm.get('reference').value;
+    const quantity = this.productForm.get('quantity').value;
     const designation = this.productForm.get('designation').value;
     const price = this.productForm.get('price').value;
 
-    const newProduct = new Product(reference, designation, price);
+    const newProduct = new Product(reference, quantity, designation, price);
     if (this.fileUrl && this.fileUrl !== '') {
       newProduct.cover_image = this.fileUrl;
     }
