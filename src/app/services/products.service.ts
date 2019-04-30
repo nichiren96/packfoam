@@ -22,10 +22,12 @@ export class ProductsService {
   }
 
   getProducts() {
+   
     firebase.database().ref('/products')
       .on('value', (data) => {
         this.products = data.val() ? data.val() : [];
         this.emitProducts();
+        
       })
   }
 

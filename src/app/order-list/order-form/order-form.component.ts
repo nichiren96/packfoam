@@ -9,6 +9,8 @@ import { Client } from '../../models/Client.model';
 import { ProductsService } from '../../services/products.service';
 import { ClientsService } from '../../services/clients.service';
 import * as firebase from 'firebase';
+import { Cart } from '../../models/Cart.model';
+import { CartService } from '../../services/cart.service';
 
 
 @Component({
@@ -28,8 +30,12 @@ export class OrderFormComponent implements OnInit {
   clients: Client[];
   clientsSubscription: Subscription;
 
+  carts: Cart[];
+  cartsSubscription: Subscription;
+
   constructor(private formBuilder: FormBuilder, 
               private orderService: OrdersService, 
+              private cartService: CartService,
               private productService: ProductsService,
               private clientService: ClientsService,
               private router: Router) { }
@@ -59,16 +65,16 @@ export class OrderFormComponent implements OnInit {
   initForm() {
     this.orderForm = this.formBuilder.group({
       client: ['', Validators.required],
-      article: ['', Validators.required],
+      product: ['', Validators.required],
       quantity: ['', Validators.required],
-      product:  ['', Validators.required],
       status:  ['', Validators.required]
     });
   }
 
-  onSaveOrder() {
+  onSaveCart() {
+
     const client_id = this.orderForm.get('client').value;
-    const product_id = this.orderForm.get('article').value;
+    const product_id = this.orderForm.get('product').value;
     const product_quantity = this.orderForm.get('quantity').value;
     const user_id = firebase.auth().currentUser.email;
     const order_status = this.orderForm.get('status').value ?
@@ -83,6 +89,42 @@ export class OrderFormComponent implements OnInit {
                                 client_id, 
                                 user_id, 
                                 product_id);
+  
+    
+    this.orderService.createNewOrder(neworder);
+
+    const cart = new Cart(product_id, order_number, product_quantity, product_quantity*1000);
+    this.cartService.createNewCart(cart);
+
+    this.cartsSubscription = this.cartService.cartsSubject.subscribe(
+      (carts: Cart[]) => {
+        this.carts = carts;
+      }
+    );
+
+    this.cartService.getCartByOrder(order_number);
+    this.cartService.emitCarts();
+
+  }
+
+  onSaveOrder() {
+    const client_id = this.orderForm.get('client').value;
+    const product_id = this.orderForm.get('product').value;
+    const product_quantity = this.orderForm.get('quantity').value;
+    const user_id = firebase.auth().currentUser.email;
+    const order_status = this.orderForm.get('status').value ?
+                            this.orderForm.get('status').value : true ;
+
+    const order_number = product_id + "/" +Date.now().toString()
+
+    const neworder = new Order(order_number, 
+                                Date.now().toString(),
+                                product_quantity,
+                                order_status, 
+                                client_id, 
+                                user_id, 
+                                product_id);
+  
     
     this.orderService.createNewOrder(neworder);
     this.router.navigate(['/orders'])

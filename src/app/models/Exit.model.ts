@@ -1,6 +1,6 @@
 export class Exit {
 
-    constructor(public product: string, 
+    constructor(public product_reference: string, 
                 public quantity: number,
                 public price: number,
                 public exit_date: string,

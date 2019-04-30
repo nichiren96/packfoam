@@ -3,6 +3,7 @@ import { Client } from '../models/Client.model';
 import { Subject } from 'rxjs';
 import * as firebase from 'firebase';
 
+
 @Injectable()
 export class ClientsService {
 

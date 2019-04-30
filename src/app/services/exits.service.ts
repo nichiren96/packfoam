@@ -49,7 +49,7 @@ export class ExitsService {
     this.saveExits();
     this.emitExits();
 
-    this.updateProductQuantity(newExit.product, newExit.quantity);
+    this.updateProductQuantity(newExit.product_reference, newExit.quantity);
   }
 
 

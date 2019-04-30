@@ -18,9 +18,10 @@
                         </nav>
                     </div>
                 </div>
+    
 
                 <div class="row">
-                    <div class="col-lg-8 col-md-6 col-sm-6">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="card">
 
                             <div class="card-header card-header-primary">
@@ -35,9 +36,12 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="client" class="bmd-label-floating">Client</label>
-                                                <select formControlName="client" class="form-control" id="client"
+                                                <select formControlName="client"
+                                                
+                                                 class="form-control" id="client"
                                                     name="client">
-                                                    <option *ngFor="let client of clients" [value]="client.name">
+                                                    <option *ngFor="let client of clients" 
+                                                    [value]="client.name">
                                                         {{ client.name }}
                                                     </option>
                                                 </select>
@@ -48,11 +52,11 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="product" class="bmd-label-floating">Article</label>
-                                                <select name="product" id="product" 
-                                                    formControlName="product"
+                                                <select formControlName="product" name="product" id="product" 
                                                     class="form-control">
-                                                    <option *ngFor="let product of products"
-                                                        [value]="product.reference">
+                                                    <option *ngFor="let product of products" 
+                                                        [value]="product.reference"
+                                                        unit_price="product.price">
                                                         {{ product.reference }}
                                                     </option>
                                                 </select>
@@ -61,21 +65,32 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="quantity" class="bmd-label-floating">Quantité</label>
-                                                <input type="text" class="form-control"
-                                                     formControlName="quantity"
-                                                     id="quantity" name="quantity">
-            
+                                                <input type="text" class="form-control" formControlName="quantity"
+                                                    id="quantity" name="quantity">
+
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="status" class="bmd-label-floating">
+                                                    Montant
+                                                </label>
+                                                <input type="text" disabled class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="status" class="bmd-label-floating">Statut de la
                                                     commande</label>
                                                 <select class="form-control" 
-                                                    formControlName="status"
-                                                    id="status" name="status">
+                                                    formControlName="status" id="status"
+                                                    name="status">
                                                     <option value="true" selected>Validée</option>
                                                     <option value="false">En attende de validation</option>
                                                 </select>
@@ -83,24 +98,67 @@
                                         </div>
                                     </div>
 
-                            
-                            <div class="row">
-                                <button class="btn btn-primary" type="submit">Enregistrer</button>
+
+                                    <div class="row">
+                                       
+                                        <button class="btn btn-primary" type="submit">Enregistrer</button>
+                                            
+                                        <!--<button class="btn btn-primary" (click)="onSaveCart">
+                                            Ajouter au panier</button>-->
+                                    </div>
+                                </form>
+                                <div class="row">
+                                   
+                                    </div>
+
                             </div>
-                            </form>
-
                         </div>
-                    </div>
+                       
+                    </div> <!-- End COl -->
+                    <!--
+                    <div class="col-lg-6">
+                            <div class="card">
 
-                </div>
+                                <div class="card-header card-header-primary">
+                                    <h4 class="card-title ">Panier</h4>
+                                    <p class="card-category">Listes des commandes pour ce client</p>
+
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table">
+
+                                            <tbody id="productList">
+                                                <tr *ngFor="let cart of carts">
+                                                    <td>
+                                                        {{ cart.product_reference }}
+                                                    </td>
+                                                    <td>
+                                                        {{ cart.product_quantity }}
+                                                    </td>
+                                                    <td>
+                                                        {{ cart.total }}
+                                                    </td>
+                                                    <td>
+                                                        <span style="cursor: pointer;" class="text-danger">
+                                                            <i class="material-icons">delete</i>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>-->
             </div>
         </div>
+        <!-- End Content -->
     </div>
-    <!-- End Content -->
-</div>
 
 
-<!-- Footer 
+    <!-- Footer 
       <footer class="footer">
           <div class="container-fluid">
               <nav class="float-left">

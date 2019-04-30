@@ -38,6 +38,9 @@ import { EntriesService } from './services/entries.service';
 import { ExitsService } from './services/exits.service';
 import { ProgressbarComponent } from './progressbar/progressbar.component';
 import { ClientsService } from './services/clients.service';
+import { CartListComponent } from './cart-list/cart-list.component';
+import { CartService } from './services/cart.service';
+
 
 const appRoutes: Routes = [
   { path: 'auth/signup', component: SignupComponent },
@@ -90,8 +93,7 @@ const appRoutes: Routes = [
     ExitFormComponent,
     DashboardComponent,
     ProgressbarComponent,
-
-  
+    CartListComponent,
   ],
   imports: [
     BrowserModule,
@@ -105,6 +107,7 @@ const appRoutes: Routes = [
     AuthService,
     CompaniesService,
     OrdersService,
+    CartService,
     ProductsService,
     ClientsService,
     EntriesService,

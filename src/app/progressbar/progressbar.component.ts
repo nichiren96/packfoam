@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  Event,
-  NavigationCancel,
-  NavigationEnd,
-  NavigationError,
-  NavigationStart,
-  Router
-} from '@angular/router';
+import { Subscription } from 'rxjs';
+
+
 
 @Component({
   selector: 'app-progressbar',
@@ -15,6 +10,15 @@ import {
 })
 export class ProgressbarComponent implements OnInit {
 
- ngOnInit() {}
+  show = false;
 
+  constructor() { }
+
+  ngOnInit() {
+   
+  }
+
+  ngOnDestroy() {
+   
+  }
 }

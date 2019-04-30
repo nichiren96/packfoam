@@ -15,6 +15,7 @@
                 <li class="breadcrumb-item active" aria-current="page">Liste de vos clients</li>
               </ol>
             </nav>
+           
           </div>
         </div>
         <div class="row">
@@ -24,11 +25,15 @@
                 <h4 class="card-title ">Liste des clients</h4>
                 <p class="card-category">Trouvez ci-dessous les informations sur vos clients</p>
                 <button class="btn btn-success pull-right" (click)="onNewClient()">Ajouter client</button>
+      
               </div>
+             <app-progressbar></app-progressbar>
+            
               <div class="card-body">
                 <div class="table-responsive">
                   <table class="table">
                     <thead class="text-primary">
+          
                       <th>
                         Nom
                       </th>
@@ -46,6 +51,7 @@
                       </th>
                     </thead>
                     <tbody id="productList">
+                     
                       <tr *ngFor="let client of clients; let i = index">
                         <td>{{ client.name}}</td>
                         <td>{{ client.phone }}</td>

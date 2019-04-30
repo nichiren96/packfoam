@@ -44,8 +44,11 @@ export class ProductFormComponent implements OnInit {
       newProduct.cover_image = this.fileUrl;
     }
     this.productService.createNewProduct(newProduct);
-    this.router.navigate(['/products'])
+    this.router.navigate(['/products']);
+    
   }
+
+  
 
   onBack() {
     this.router.navigate(['/products']);
